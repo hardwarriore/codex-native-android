@@ -146,3 +146,30 @@ chmod +x scripts/build-termux.sh scripts/wrappers/*
 ```
 
 The build script does not require `rustup`, because Termux's packaged Rust may use packaged target standard libraries instead. Confirm your `rustc` and `rust-std-aarch64-linux-android` versions match. It also deliberately stops if the `code-mode-protocol/build.rs` layout differs from the recorded version.
+
+## Fixes
+
+### Codex Code Mode Host Executable
+
+In the Android/Termux port, `codex-code-mode-host` may already be included in
+  the package, but Codex expects it at:
+
+  ```text
+  ~/.local/bin/codex-code-mode-host
+
+  Create the required symlink:
+
+  mkdir -p "$HOME/.local/bin"
+
+  ln -sf "$HOME/.codex/packages/standalone/releases/0.154.0-aarch64-unknown-linux-musl/
+  bin/codex-code-mode-host" \
+    "$HOME/.local/bin/codex-code-mode-host"
+
+  chmod +x "$HOME/.local/bin/codex-code-mode-host"
+
+  Test the installation:
+
+  "$HOME/.local/bin/codex-code-mode-host" --help
+
+  If you see Exec format error, the host binary is not compatible with the
+  Android/Termux environment and must be rebuilt for Android/Termux.
