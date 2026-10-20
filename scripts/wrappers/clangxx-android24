@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+args=()
+for arg in "$@"; do
+  case "$arg" in
+    --target=aarch64-linux-android) args+=(--target=aarch64-linux-android24) ;;
+    *) args+=("$arg") ;;
+  esac
+done
+exec clang++ "${args[@]}"
