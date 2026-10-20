@@ -94,3 +94,12 @@ CHANGELOG.ignore.md
 # Python bytecode files
 __pycache__/
 *.pyc
+
+# Codex Native Android build artifacts
+**/target/
+*.log
+codex-release/
+*.tar.gz
+SHA256SUMS
+codex-rs/.cargo/config.toml.backup
+codex-rs/code-mode-protocol/build.rs.bak

@@ -1,0 +1,13 @@
+name: Release assets (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  instructions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'Android binary is built and verified on Termux.'
+          echo 'Upload tar.gz and SHA256SUMS manually to a GitHub Release.'
+          echo 'Automated cross-compilation is not configured or validated yet.'
